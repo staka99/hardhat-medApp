@@ -1,0 +1,88 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+contract AccessControl {
+    
+    mapping(address => mapping(address => bool)) public doctorAccess;
+
+    mapping(address => mapping(address => bool)) public approvedPersons;
+
+    mapping(address => mapping(address => bool)) public hasTriggeredEmergency;
+
+    mapping(address => uint256) public emergencyCount;
+
+    uint256 public emergencyThreshold = 3; 
+
+    // ------------------------ OVLAŠĆENJE DOKTORU ------------------------
+
+    function grandAccessForDoctor(address _doctor) public {
+        doctorAccess[msg.sender][_doctor] = true;
+    }
+
+    function isAccessForDoctorGranted(address _doctor) public view returns (bool) {
+        return doctorAccess[msg.sender][_doctor];
+    }
+
+    function haveAccessToPatient(address _patient) public view returns (bool) {
+        return doctorAccess[_patient][msg.sender];
+    }
+
+    function recoveAccessForDoctor(address _doctor) public {
+        doctorAccess[msg.sender][_doctor] = false;
+    }
+
+    // ------------------------ OVLAŠĆENJE DRUGOJ OSOBI ------------------------
+
+    function aprovePerson(address _person1) public {
+        approvedPersons[msg.sender][_person1] = true;
+    }
+
+    function isApprovedForPerson(address _person2) public view returns (bool) {
+        return approvedPersons[_person2][msg.sender];
+    }
+
+
+    // ------------------------ PRISTUP U IME DRUGE OSOBE ------------------------
+
+    function grantAccessToAnotherPerson(address _patient, address _doctor) public {
+        require(approvedPersons[_patient][msg.sender], "You are not authorized to grant access for this patient.");
+            doctorAccess[_patient][_doctor] = true;
+    }
+
+
+    // ------------------------ HITAN SLUČAJ ------------------------
+
+    function triggerEmergency(address _patient) public {
+        if(hasDoctorTriggeredEmergency(_patient)) {
+            if (isEmergencyActivated(_patient)) {
+                doctorAccess[msg.sender][_patient] = true; 
+            }
+        } else {
+            if (emergencyCount[_patient] > 0) {
+                emergencyCount[_patient] += 1;
+            } else {
+                hasTriggeredEmergency[_patient][msg.sender] = true;
+                emergencyCount[_patient] = 1;
+            }
+        }
+    }
+
+    function revokeEmergencyCall(address _patient) public {
+        if (hasDoctorTriggeredEmergency(_patient)) {
+            hasTriggeredEmergency[_patient][msg.sender] = false;
+            emergencyCount[_patient] = 0;
+        } else {
+            require(emergencyCount[_patient] > 0, "No emergency calls to revoke.");
+            emergencyCount[_patient] -= 1;
+        }
+    }
+
+    function isEmergencyActivated(address _patient) public view returns (bool) {
+        return emergencyCount[_patient] >= emergencyThreshold;
+    }
+
+    function hasDoctorTriggeredEmergency(address _patient) public view returns (bool) {
+        return hasTriggeredEmergency[_patient][msg.sender];
+    }
+
+}

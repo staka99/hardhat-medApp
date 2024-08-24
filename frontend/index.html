@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" type="module"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="" width="130"/>
+        </div>
+        <nav>
+            <ul>
+                <li>Почетна</li>
+                <li class="nav-link doctor-only" style="display: none;">Медицински подаци</li>
+                <li class="nav-link patient-only" style="display: none;">Заштита приватности</li>
+                <li>Контакт</li>
+            </ul>
+            <div class="accountField">
+                <div class="accountPhoto">
+                    <div id="imgDoktor" class="doctor-only" style="display: none;">
+                        <img src="images/dr.png" alt="" height="60px"/>
+                    </div>
+                    <div id="imgPacijent" class="patient-only" style="display: none;">
+                        <img src="images/pac.png" alt="" height="60px"/>
+                    </div>
+                </div>
+                <h6> Корисник: 
+                    <div id="userName"></div>
+                    <div id="account"></div>
+                </h6> 
+            </div>
+        </nav>
+    </div>
+
+    <div class="mainPage">
+        <div id="divDoktor" class="profile-section doctor-only" style="display: none;">
+            <h1>Листа пацијената</h1>
+            <p>Приступите медицинском картону oперација</p>
+            <div id="patientList">
+                <!-- Patient divs will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <div id="divPacijent" class="profile-section patient-only" style="display: none;">
+            <h1>Листа лекара</h1>
+            <p>Управљајте приступом Вашем картону операција</p>
+            <table id="doctorTable">
+                <thead>
+                    <tr>
+                        <th>Адреса налога</th>
+                        <th>Лекар</th>
+                        <th>Приступ подацима</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row data will be inserted here by JavaScript -->
+                </tbody>
+                <div id="accessModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button">&times;</span>
+                        <h2>Дозволи приступ подацима за другу особу</h2>
+                        <input type="text" id="metaMaskAddress" placeholder="Унесите MetaMask адреса">
+                        <button id="modalButton" class="modalButton">Дозволи приступ</button>
+                        <div id="message" class="message"></div> 
+                    </div>
+                </div>
+            </table>
+
+                <!-- New Section for Adding Access -->
+            <div class="access-card">
+                <h2>Додај овлашћење другој особи</h2>
+                <input type="text" id="addressAccessCard" placeholder="Унесите MetaMask адресу">
+                <button id="addAccessButton">Додај овлашћење</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

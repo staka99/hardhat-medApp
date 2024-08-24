@@ -1,0 +1,372 @@
+body {
+    text-align: center;
+    font-family: "Bahnschrift SemiBold";
+    background-color: rgb(199, 199, 199);
+    margin: 0;
+    padding: 0;
+  }
+  
+  * {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(208, 20, 20);
+    color:white;
+    clear: both;
+  }
+  
+  nav {
+    display: flex; 
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 130px;
+  }
+  
+  ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    display: flex; 
+  }
+  
+  ul li {
+    display: inline-block;
+    padding: 25px 35px;
+    font-size: 20px;
+  }
+  
+  ul li:hover {
+    color: rgb(187, 187, 187);
+  }
+  
+  .mainPage {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+  }
+  
+  .accountField {
+    background-color: rgb(130, 10, 10);
+    padding: 6px 20px; 
+    color: white;
+    display: flex;
+    align-items: center; 
+    gap: 20px; 
+  }
+  
+  .accountField .accountPhoto {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .accountField h6 {
+    margin: 0; 
+  }
+  
+  .accountField .userName {
+    font-size: 100px;
+  }
+  
+  /* Styles for doctor table */
+  #doctorTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+  
+  #doctorTable th, #doctorTable td {
+      border: 1px solid #d4d4d4;
+      padding: 8px;
+      text-align: left;
+  }
+  
+  #doctorTable th {
+      background-color: rgb(208, 20, 20); 
+      color: white; 
+      font-weight: bold;
+      text-align: center; 
+      height: 50px;
+  }
+  
+  #doctorTable tr:nth-child(even) {
+      background-color: rgb(222, 222, 222); 
+      color: black; 
+  }
+  
+  #doctorTable tr:nth-child(odd) {
+      background-color: #ffffff; 
+  }
+  
+  #doctorTable td {
+      text-align: left; 
+  }
+  
+  #doctorTable td:last-child {
+      text-align: center; 
+  }
+  
+  #doctorTable button {
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-grant {
+    background-color: rgb(11, 142, 11);
+  }
+  
+  .button-grant:hover {
+    background-color: #165219;
+  }
+  
+  .button-revoke {
+    background-color: red;
+  }
+  
+  .button-revoke:hover {
+    background-color: #a32b2b;
+  }
+  
+  /* Styles for patient table */
+  
+  #patientList {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    max-width: 1000px; 
+  }
+  
+  .patient-card {
+    position: relative;
+    align-items: center;
+    background-color: #e0e0e0; 
+    border-radius: 10px; 
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc; 
+    transition: background-color 0.3s ease; 
+    width: 70%; 
+    max-width: 600px; 
+  }
+  
+  .patient-card img {
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .patient-card:hover {
+    background-color: #fec2c2; 
+  }
+  
+  .patient-card.expanded {
+    width: 100%;
+    height: auto;
+    background-color: #fec2c2; 
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .patient-card p.access-status {
+    font-weight: bold;
+    color: #333; /* Dodajte boju teksta po želji */
+    margin-top: 10px;
+  }
+  
+  /* Tabela operacija */
+  .operation-table {
+    margin: 20px auto;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #f2f2f2; /* Боја позадине табеле */
+    color: #333; /* Боја текста у табели */
+    border: 1px solid #ccc; /* Боја ивице табеле */
+  }
+  
+  /* Стилизовање заглавља табеле */
+  .operation-table th {
+    background-color: rgb(208, 20, 20); /* Боја позадине заглавља */
+    color: white; /* Боја текста у заглављу */
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  /* Стилизовање редова табеле */
+  .operation-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  /* Стилизовање алтернативних редова */
+  .operation-table tr:nth-child(even) {
+    background-color: #e6e6e6;
+  }
+  
+  .no-access {
+    font-weight: bold;
+    color: darkred; /* Tamno crvena boja za tekst */
+    font-style: italic;
+    display: block; /* Obezbeđuje da tekst zauzima ceo red */
+    margin-bottom: 10px; /* Razmak između teksta i dugmeta */
+    text-align: center; /* Centriranje teksta i dugmeta unutar elementa */
+  }
+  
+  .emergency-button {
+    background-color: rgb(208, 20, 20);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block; /* Obezbeđuje da dugme bude na novom redu */
+    margin: 10px auto; /* Automatski centriranje dugmeta */
+  }
+  
+  .emergency-button:hover {
+    background-color: darkred;
+  }
+  
+  
+  /* Kartica za Metamask unos */
+  .access-card {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .access-card h2 {
+    margin-bottom: 15px;
+  }
+  
+  .access-card input[type="text"] {
+    width: calc(100% - 22px); /* Adjust width considering padding and border */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .access-card button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Дугме за другу особу */ 
+  .button-procedure {
+    background-color: #007bff;
+  }
+  
+  .button-procedure:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Дијалог прозор*/
+  
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Садржај */
+  .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
+  
+  .close-button:hover,
+  .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  
+  /* Input and button styles */
+  input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+  }
+  
+  .modalButton {
+    background-color: rgb(11, 142, 11); /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modalButton:hover {
+    background-color: #165219;
+  }
+  
+  .message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: none; 
+  }
+  
+  .message.error {
+    color: #d9534f; 
+    background-color: #f2dede; 
+    border: 1px solid #ebccd1; 
+  }
+  
+  .message.success {
+    color: #3c763d; 
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6; 
+  }
