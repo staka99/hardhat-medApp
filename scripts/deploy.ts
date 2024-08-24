@@ -1,17 +1,15 @@
 import { ethers } from "hardhat";
 
 async function main() {
-    const ContractFactory = await ethers.getContractFactory("AccessControl"); // Zamenite sa imenom vašeg pametnog ugovora
+    const ContractFactory = await ethers.getContractFactory("AccessControl"); 
     console.log("Deploying contract...");
 
-    const contract = await ContractFactory.deploy({
-        gasLimit: 3000000, // Podesite gas limit prema potrebama vašeg ugovora
-    });
+    const contract = await ContractFactory.deploy();
 
-    await contract.waitForDeployment();  // Sačekajte da se ugovor uspešno deploy-uje
+    await contract.waitForDeployment();  
 
-    const contractAddress = await contract.getAddress();  // Ispravno dobijanje adrese
-    console.log("AccessControl deployed to:", contractAddress);  // Ispišite adresu ugovora
+    const contractAddress = await contract.getAddress();  
+    console.log("AccessControl deployed to:", contractAddress);  
 
 }
 
